@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import EditorFooter from "./EditorFooter";
 
 const Editor: React.FC = () => {
   const [color, setColor] = useState<"gold" | "skyblue" | "pink" | "lightgreen">("gold");
   const [menuOpen, setMenuOpen] = useState(false);
+  const editorRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const formatText = (command: string) => {
+    document.execCommand(command, false);
+    editorRef.current?.focus();
+  };
 
   return (
     <div
@@ -18,6 +24,7 @@ const Editor: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
+        boxSizing: "border-box",
       }}
     >
       {/* Editor Header */}
@@ -27,7 +34,7 @@ const Editor: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: color, // header matches selected color
+          backgroundColor: color,
           padding: "0.5rem 1rem",
           borderRadius: "6px",
         }}
@@ -77,24 +84,25 @@ const Editor: React.FC = () => {
       )}
 
       {/* Editor Content */}
-      <textarea
+      <div
+        ref={editorRef}
+        contentEditable
         className="editor-content"
-        placeholder="Write your note here..."
         style={{
-          width: "100%",
           flexGrow: 1,
           marginTop: "10px",
           padding: "8px",
           borderRadius: "6px",
           border: "1px solid #ccc",
-          resize: "vertical",
           backgroundColor: "#444",
           color: "white",
           outline: "none",
+          overflowY: "auto",
         }}
-      ></textarea>
+      ></div>
 
-      <EditorFooter />
+      {/* Editor Footer */}
+      <EditorFooter formatText={formatText} />
     </div>
   );
 };
