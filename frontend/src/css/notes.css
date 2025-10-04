@@ -56,10 +56,10 @@
   transform: scale(1.02);
 }
 
-.note-card.yellow { border-top: 10px solid gold; }
-.note-card.blue { border-top: 10px solid skyblue; }
+.note-card.gold { border-top: 10px solid gold; }
+.note-card.skyblue { border-top: 10px solid skyblue; }
 .note-card.pink { border-top: 10px solid pink; }
-.note-card.green { border-top: 10px solid lightgreen; }
+.note-card.lightgreen { border-top: 10px solid lightgreen; }
 
 .editor {
   display: flex;

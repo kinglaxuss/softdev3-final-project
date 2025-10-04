@@ -1,7 +1,7 @@
 import React from "react";
 
 interface NoteCardProps {
-  color: "yellow" | "blue" | "pink" | "green";
+  color: "gold" | "skyblue" | "pink" | "lightgreen";
 }
 
 const NoteCard: React.FC<NoteCardProps> = ({ color }) => {
