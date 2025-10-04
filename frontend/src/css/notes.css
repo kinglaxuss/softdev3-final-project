@@ -1,0 +1,155 @@
+/* Main container fills the whole viewport */
+.notes-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: #bfbfbf;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px; /* fixed sidebar width */
+  min-width: 250px;
+  background: black;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.add-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.notes-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 5px; /* space for scrollbar */
+}
+
+.note-card {
+  height: 80px;
+  background: #555;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.1s ease;
+}
+
+.note-card:hover {
+  transform: scale(1.02);
+}
+
+.note-card.yellow { border-top: 10px solid gold; }
+.note-card.blue { border-top: 10px solid skyblue; }
+.note-card.pink { border-top: 10px solid pink; }
+.note-card.green { border-top: 10px solid lightgreen; }
+
+/* Editor fills remaining space */
+.editor {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  border-radius: 10px;
+  background: #444;
+  overflow: hidden;
+}
+
+.editor-header {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: #222;
+  background: gold;
+}
+
+.editor-content {
+  flex-grow: 1;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background: #444;
+  color: white;
+  resize: none;
+  width: 100%;
+}
+
+.editor-footer {
+  display: flex;
+  gap: 10px;
+  padding: 0.5rem 1rem;
+  background: #333;
+  border-top: 1px solid #222;
+}
+
+.editor-footer button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .notes-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .notes-list {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 10px;
+  }
+
+  .note-card {
+    flex: 0 0 150px;
+    height: 100px;
+  }
+
+  .editor {
+    margin: 0.5rem;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .editor-content {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+
+  .editor-footer button {
+    font-size: 0.9rem;
+  }
+
+  .add-btn {
+    font-size: 1.2rem;
+  }
+}
