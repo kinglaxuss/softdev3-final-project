@@ -50,6 +50,8 @@
   cursor: pointer;
   position: relative;
   transition: transform 0.1s ease;
+  width: 100%;
+  max-width: 240px;
 }
 
 .note-card:hover {

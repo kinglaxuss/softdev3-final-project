@@ -36,9 +36,21 @@ const Sidebar: React.FC<Props> = ({
           notes.map((note) => (
             <div
               key={note.id}
-              style={{ display: "flex", alignItems: "center", gap: 8 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                width: "100%",
+                maxWidth: "260px", // ✅ keeps all cards same size
+              }}
             >
-              <div onClick={() => onSelect(note)} style={{ flex: 1 }}>
+              <div
+                onClick={() => onSelect(note)}
+                style={{
+                  flex: 1,
+                  overflow: "hidden", // ✅ prevents stretching
+                }}
+              >
                 <NoteCard
                   color={note.color}
                   content={note.content}
@@ -55,6 +67,7 @@ const Sidebar: React.FC<Props> = ({
                   borderRadius: "6px",
                   padding: "6px 8px",
                   cursor: "pointer",
+                  flexShrink: 0, // ✅ keeps delete button from moving
                 }}
               >
                 🗑

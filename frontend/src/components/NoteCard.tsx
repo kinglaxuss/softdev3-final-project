@@ -7,7 +7,7 @@ interface NoteCardProps {
 }
 
 const NoteCard: React.FC<NoteCardProps> = ({ color, content }) => {
-  const preview = content.length > 50 ? content.slice(0, 50) + "..." : content;
+  const preview = content.length > 30 ? content.slice(0, 30) + "..." : content;
 
   return (
     <div className={`note-card ${color}`}>
