@@ -56,6 +56,12 @@
   transform: scale(1.02);
 }
 
+.note-card.selected { 
+  transform: scale(1.03); 
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3); 
+}
+
+
 .note-card.gold { border-top: 10px solid gold; }
 .note-card.skyblue { border-top: 10px solid skyblue; }
 .note-card.pink { border-top: 10px solid pink; }

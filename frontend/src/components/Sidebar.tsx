@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import NoteCard from "./NoteCard";
-import { getNotes } from "../api/notes"; // example API function
 
 interface Note {
   id: number;
@@ -8,29 +7,31 @@ interface Note {
   content: string;
 }
 
-const Sidebar: React.FC = () => {
-  const [notes, setNotes] = useState<Note[]>([]);
+interface Props {
+  notes: Note[];
+  onSelect: (note: Note) => void;
+  onAdd: () => void;
+  onDelete: (id: number) => void;
+  selectedNoteId: number | null;
+}
 
-  // Fetch notes from API when component mounts
-  useEffect(() => {
-    const fetchNotes = async () => {
-      const data = await getNotes(); // call your API function
-      setNotes(data);
-    };
-    fetchNotes();
-  }, []);
-
+const Sidebar: React.FC<Props> = ({ notes, onSelect, onAdd, onDelete, selectedNoteId }) => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <button className="add-btn">+</button>
+        <button className="add-btn" onClick={onAdd}>+</button>
         <h2>Notes</h2>
       </div>
 
       <div className="notes-list">
         {notes.length > 0 ? (
           notes.map((note) => (
-            <NoteCard key={note.id} color={note.color} />
+            <div key={note.id} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div onClick={() => onSelect(note)} style={{ flex: 1 }}>
+                <NoteCard color={note.color} isSelected={selectedNoteId === note.id} />
+              </div>
+              <button onClick={() => onDelete(note.id)} aria-label="delete">🗑</button>
+            </div>
           ))
         ) : (
           <p style={{ color: "white" }}>No notes yet</p>
