@@ -12,7 +12,7 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ formatText }) => {
         display: "flex",
         gap: "10px",
         padding: "0.5rem 1rem",
-        background: "#333",
+        background: "#333", // stays dark
         borderTop: "1px solid #222",
       }}
     >
