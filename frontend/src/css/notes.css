@@ -1,6 +1,7 @@
 /* Main container fills the whole viewport */
 .notes-container {
   display: flex;
+  flex-direction: row;
   height: 100vh;
   width: 100vw;
   background: #bfbfbf;
@@ -17,6 +18,7 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  overflow-y: auto;
 }
 
 .sidebar-header {
@@ -40,8 +42,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 /* Note cards */
@@ -75,11 +77,13 @@
 .editor {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   margin: auto;
   border-radius: 10px;
   background: #444;
-  width: 1300px;
-  height: 800px;
+  width: 100%;
+  max-width: 1300px;
+  height: 90vh;
   overflow: hidden;
   box-sizing: border-box;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -91,7 +95,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  color: #222;
+  color: #000000;
+  background: gold;
 }
 
 .editor-content {
@@ -104,9 +109,10 @@
   color: white;
   resize: none;
   width: 100%;
-  margin: 1rem auto;
+  margin: 0 auto;
   border-radius: 6px;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .editor-footer {
@@ -115,6 +121,9 @@
   padding: 0.5rem 1rem;
   background: #333;
   border-top: 1px solid #222;
+  justify-content: flex-end;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3); 
 }
 
 .editor-footer button {
@@ -123,72 +132,74 @@
   color: white;
   font-size: 1rem;
   cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
-/* =============================== */
-/* Responsive Design Adjustments   */
-/* =============================== */
-
-/* --- Tablets and smaller laptops --- */
-@media (max-width: 1200px) {
-  .editor {
-    width: 90%;
-    height: 75vh;
-  }
+.editor-footer button:hover {
+  opacity: 0.8;
 }
 
+/* ====================================== */
+/* RESPONSIVE: Tablets and smaller screens */
+/* ====================================== */
+
+/* Medium laptops / tablets */
 @media (max-width: 1024px) {
   .notes-container {
     flex-direction: column;
     height: auto;
+    overflow-y: auto;
   }
 
   .sidebar {
     width: 100%;
+    min-width: unset;
     flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
     align-items: center;
     justify-content: flex-start;
-    overflow-x: auto;
-    padding: 1rem 0.5rem;
+    padding: 0.5rem 0.8rem;
   }
 
   .notes-list {
     flex-direction: row;
     overflow-x: auto;
-    overflow-y: hidden;
     gap: 10px;
-    padding: 0 1rem;
+    padding: 0.5rem;
   }
 
   .note-card {
-    flex: 0 0 180px;
+    flex: 0 0 160px;
     height: 90px;
+    min-width: 150px;
   }
 
   .editor {
     width: 95%;
-    height: 70vh;
+    height: 75vh;
     margin: 1rem auto;
   }
 }
 
-/* --- Tablets and large phones --- */
+/* Tablets / large phones */
 @media (max-width: 768px) {
   .sidebar {
     flex-wrap: wrap;
     justify-content: center;
     padding: 0.5rem;
+    gap: 10px;
   }
 
   .note-card {
-    flex: 0 0 150px;
+    flex: 0 0 140px;
     height: 85px;
   }
 
   .editor {
     width: 100%;
     height: auto;
-    margin: 0.5rem;
+    margin: 0.5rem auto;
     border-radius: 8px;
   }
 
@@ -198,17 +209,20 @@
   }
 }
 
-/* --- Small phones --- */
+/* Small phones */
 @media (max-width: 480px) {
   .notes-container {
     flex-direction: column;
+    height: 100vh;
   }
 
   .sidebar {
     padding: 0.5rem;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     overflow-x: auto;
+    overflow-y: hidden;
+    gap: 8px;
   }
 
   .note-card {
@@ -218,7 +232,7 @@
 
   .editor {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 110px);
     border-radius: 0;
     margin: 0;
   }
